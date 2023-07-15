@@ -1,0 +1,117 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.8rem;
+}
+
+:root {
+  color-scheme: dark;
+  --bg-primary: hsl(200, 8%, 8%);
+  --text-primary: hsl(200, 8%, 92%);
+  --table-bg-1: hsl(200, 5%, 10%);
+  --table-bg-2: hsl(200, 5%, 14%);
+  --table-head-bg: hsl(170, 100%, 25%);
+  --scrollbar-track-bg: hsl(200, 5%, 20%);
+  --scrollbar-thumb-bg: hsl(200, 5%, 60%);
+  --scrollbar-thumb-hover-bg: hsl(200, 5%, 80%);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color-scheme: dark;
+}
+
+.table-wrapper {
+  width: calc(100% - 2rem);
+  height: calc(100svh - 2rem);
+  margin: 1rem;
+  overflow: auto;
+  color-scheme: dark;
+  background-color: var(--table-bg-1);
+}
+
+.college-table {
+  width: 100%;
+  height: 50svh;
+  border-collapse: collapse;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg);
+  border: 0.15rem solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-bg);
+  border: 0.15rem solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  width: 1rem;
+  height: 1rem;
+  background: var(--scrollbar-thumb-bg);
+}
+
+.college-table > thead > :nth-child(1) {
+  background-color: var(--table-head-bg);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
+.college-table > tbody > * > :nth-child(1) {
+  box-shadow: inset -1px 0px 0px 1px var(--scrollbar-track-bg);
+  text-align: initial;
+  background-color: inherit;
+  position: sticky;
+  left: 0px;
+  z-index: 80;
+}
+
+td {
+  padding: 0.5rem;
+  border-spacing: 0;
+  text-align: center;
+}
+
+th {
+  padding: 1rem;
+  border-spacing: 0;
+}
+
+tbody > tr:nth-last-of-type(even) {
+  background-color: var(--table-bg-1);
+}
+
+tbody > tr:nth-last-of-type(odd) {
+  background-color: var(--table-bg-2);
+}
+
+.form {
+  padding: 1rem;
+}
+
+.branch-checkbox-wrapper {
+  padding-inline: 1rem;
+}
+
+.branch-options {
+  background-color: transparent;
+}
