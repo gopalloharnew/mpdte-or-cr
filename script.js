@@ -42,6 +42,11 @@ const tableColumnOrder = [
     displayName: "Total Alloted",
     createFilter: false,
   },
+  {
+    property: "nationalPlayer",
+    displayName: "National Player",
+    createFilter: true,
+  },
 ];
 
 // functions
