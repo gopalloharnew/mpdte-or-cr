@@ -12,7 +12,7 @@ const tableColumnOrder = [
   { property: "instituteName", displayName: "Institute Name" },
   { property: "instituteType", displayName: "Institute Type" },
   { property: "fw", displayName: "FW" },
-  { property: "branch", displayName: "Branch" },
+  { property: "branchFullForm", displayName: "Branch" },
   { property: "jeeOpeningRank", displayName: "JEE Opening Rank" },
   { property: "jeeClosingRank", displayName: "JEE Closing Rank" },
   { property: "allottedCategory", displayName: "Category" },
@@ -27,7 +27,59 @@ function sortColleges(colleges) {
   });
 }
 
-// filters
+// create filters
+function generateFilterOptions(property) {
+  const options = [];
+  data.forEach((college) => {
+    let isThere = options.some((option) => {
+      return option === college[property];
+    });
+
+    if (!isThere) {
+      options.push(college[property]);
+    }
+  });
+  return options;
+}
+
+function createSelectOption(property, title) {
+  const select = document.createElement("select");
+  select.classList.add("filter-select");
+  select.dataset.selectProperty = property;
+  select.id = property;
+  select.name = property;
+  select.title = title;
+
+  const allOptionElem = document.createElement("option");
+  allOptionElem.value = "All";
+  allOptionElem.textContent = "All";
+  allOptionElem.selected = true;
+  select.append(allOptionElem);
+
+  generateFilterOptions(property).forEach((option) => {
+    const optionElem = document.createElement("option");
+    optionElem.value = option;
+    optionElem.textContent = option;
+    select.append(optionElem);
+  });
+
+  let wrapper = document.createElement("div");
+  wrapper.classList.add("form-group");
+  wrapper.classList.add("filter-select-wrapper");
+  wrapper.append(title);
+  wrapper.append(select);
+  filterForm.prepend(wrapper);
+}
+
+function createFilters() {
+  createSelectOption("allottedCategory", "Allotted Category");
+  createSelectOption("instituteType", "Institute Type");
+  createSelectOption("fw", "FW");
+  createSelectOption("branch", "Brach");
+  createSelectOption("domicile", "Domicile");
+}
+
+// apply filters
 function checkRankFilter(college) {
   let closingRankFrom = parseInt(closingRankFromInput.value);
   let closingRankTo = parseInt(closingRankToInput.value);
@@ -39,8 +91,21 @@ function checkRankFilter(college) {
   return true;
 }
 
+function checkOtherFilters(college) {
+  let allMatch = true;
+  [...document.querySelectorAll("[data-select-property")].forEach((select) => {
+    if (
+      select.value != "All" &&
+      college[select.dataset.selectProperty] != select.value
+    ) {
+      allMatch = false;
+    }
+  });
+  return allMatch;
+}
+
 function fitForFilters(college) {
-  let isFitForFilters = checkRankFilter(college);
+  let isFitForFilters = checkRankFilter(college) && checkOtherFilters(college);
   return isFitForFilters;
 }
 
@@ -79,6 +144,7 @@ function renderColleges() {
 }
 
 // execution
+createFilters();
 renderColleges();
 
 filterForm.addEventListener("submit", (e) => {

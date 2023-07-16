@@ -1,5 +1,6 @@
 .form {
-  margin: 1rem;
+  margin: 1rem auto;
+  width: min(50rem, calc(100% - 2rem));
   border: var(--border-primary);
   border-radius: 0.25rem;
 }
@@ -25,6 +26,14 @@
   border-color: var(--accent-color);
 }
 
+.submit-btn-wrapper {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.reset-btn,
 .submit-btn {
   background-color: var(--accent-color);
   border: none;
@@ -35,8 +44,22 @@
   cursor: pointer;
 }
 
-.submit-btn-wrapper {
+.filter-select {
+  border: var(--border-primary);
+  background-color: var(--bg-primary);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font: inherit;
+  outline: transparent;
+  max-width: 100%;
+}
+
+.filter-select:focus-visible {
+  border-color: var(--accent-color);
+}
+
+.filter-select-wrapper {
   display: flex;
-  padding: 1rem;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
 }
