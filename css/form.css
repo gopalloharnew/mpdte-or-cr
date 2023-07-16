@@ -1,0 +1,42 @@
+.form {
+  margin: 1rem;
+  border: var(--border-primary);
+  border-radius: 0.25rem;
+}
+
+.form-group {
+  padding: 1rem;
+}
+
+#closing-rank-from,
+#closing-rank-to {
+  background-color: transparent;
+  border: var(--border-primary);
+  outline: transparent;
+  font: inherit;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  max-width: 10ch;
+  text-align: center;
+}
+
+#closing-rank-from:focus-visible,
+#closing-rank-to:focus-visible {
+  border-color: var(--accent-color);
+}
+
+.submit-btn {
+  background-color: var(--accent-color);
+  border: none;
+  font: inherit;
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  color: var(--bg-primary);
+  cursor: pointer;
+}
+
+.submit-btn-wrapper {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+}

@@ -1,0 +1,48 @@
+.college-table {
+  width: 100%;
+  min-height: 50svh;
+  border-collapse: collapse;
+}
+
+.college-table > thead > :nth-child(1) {
+  background-color: var(--table-head-bg);
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
+.college-table > thead > :nth-child(1) > :nth-child(1) {
+  background-color: var(--table-head-bg);
+  box-shadow: inset -2px 0px 0px 0px var(--scrollbar-track-bg);
+  position: sticky;
+  left: 0px;
+  z-index: 110;
+}
+
+.college-table > tbody > * > :nth-child(1) {
+  box-shadow: inset -1px 0px 0px 1px var(--scrollbar-track-bg);
+  text-align: initial;
+  background-color: inherit;
+  position: sticky;
+  left: 0px;
+  z-index: 80;
+}
+
+td {
+  padding: 0.5rem;
+  border-spacing: 0;
+  text-align: center;
+}
+
+th {
+  padding: 1rem;
+  border-spacing: 0;
+}
+
+tbody > tr:nth-last-of-type(even) {
+  background-color: var(--table-bg-1);
+}
+
+tbody > tr:nth-last-of-type(odd) {
+  background-color: var(--table-bg-2);
+}

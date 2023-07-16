@@ -17,6 +17,8 @@
   --scrollbar-track-bg: hsl(200, 5%, 20%);
   --scrollbar-thumb-bg: hsl(200, 5%, 60%);
   --scrollbar-thumb-hover-bg: hsl(200, 5%, 80%);
+  --accent-color: hsl(170, 75%, 45%);
+  --border-primary: 1px solid hsl(200, 5%, 30%);
 }
 
 body {
@@ -34,12 +36,6 @@ body {
   overflow: auto;
   color-scheme: dark;
   background-color: var(--table-bg-1);
-}
-
-.college-table {
-  width: 100%;
-  height: 50svh;
-  border-collapse: collapse;
 }
 
 ::-webkit-scrollbar {
@@ -67,51 +63,4 @@ body {
   width: 1rem;
   height: 1rem;
   background: var(--scrollbar-thumb-bg);
-}
-
-.college-table > thead > :nth-child(1) {
-  background-color: var(--table-head-bg);
-  position: sticky;
-  top: 0px;
-  z-index: 100;
-}
-
-.college-table > tbody > * > :nth-child(1) {
-  box-shadow: inset -1px 0px 0px 1px var(--scrollbar-track-bg);
-  text-align: initial;
-  background-color: inherit;
-  position: sticky;
-  left: 0px;
-  z-index: 80;
-}
-
-td {
-  padding: 0.5rem;
-  border-spacing: 0;
-  text-align: center;
-}
-
-th {
-  padding: 1rem;
-  border-spacing: 0;
-}
-
-tbody > tr:nth-last-of-type(even) {
-  background-color: var(--table-bg-1);
-}
-
-tbody > tr:nth-last-of-type(odd) {
-  background-color: var(--table-bg-2);
-}
-
-.form {
-  padding: 1rem;
-}
-
-.branch-checkbox-wrapper {
-  padding-inline: 1rem;
-}
-
-.branch-options {
-  background-color: transparent;
 }
