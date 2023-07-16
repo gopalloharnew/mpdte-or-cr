@@ -9,15 +9,39 @@ const closingRankFromInput = document.querySelector("#closing-rank-from");
 const closingRankToInput = document.querySelector("#closing-rank-to");
 
 const tableColumnOrder = [
-  { property: "instituteName", displayName: "Institute Name" },
-  { property: "instituteType", displayName: "Institute Type" },
-  { property: "fw", displayName: "FW" },
-  { property: "branchFullForm", displayName: "Branch" },
-  { property: "jeeOpeningRank", displayName: "JEE Opening Rank" },
-  { property: "jeeClosingRank", displayName: "JEE Closing Rank" },
-  { property: "allottedCategory", displayName: "Category" },
-  { property: "domicile", displayName: "Domicile" },
-  { property: "totalAllotted", displayName: "Total Alloted" },
+  {
+    property: "instituteName",
+    displayName: "Institute Name",
+    createFilter: true,
+  },
+  {
+    property: "instituteType",
+    displayName: "Institute Type",
+    createFilter: true,
+  },
+  { property: "fw", displayName: "FW", createFilter: true },
+  { property: "branchFullForm", displayName: "Branch", createFilter: true },
+  {
+    property: "jeeOpeningRank",
+    displayName: "JEE Opening Rank",
+    createFilter: false,
+  },
+  {
+    property: "jeeClosingRank",
+    displayName: "JEE Closing Rank",
+    createFilter: false,
+  },
+  {
+    property: "allottedCategory",
+    displayName: "Category",
+    createFilter: true,
+  },
+  { property: "domicile", displayName: "Domicile", createFilter: true },
+  {
+    property: "totalAllotted",
+    displayName: "Total Alloted",
+    createFilter: false,
+  },
 ];
 
 // functions
@@ -64,20 +88,27 @@ function createSelectOption(property, title) {
     select.append(optionElem);
   });
 
+  const label = document.createElement("label");
+  label.setAttribute("for", select.id);
+  label.textContent = title;
+
   let wrapper = document.createElement("div");
   wrapper.classList.add("form-group");
   wrapper.classList.add("filter-select-wrapper");
-  wrapper.append(title);
+  wrapper.append(label);
   wrapper.append(select);
-  filterForm.prepend(wrapper);
+  return wrapper;
 }
 
 function createFilters() {
-  createSelectOption("allottedCategory", "Allotted Category");
-  createSelectOption("instituteType", "Institute Type");
-  createSelectOption("fw", "FW");
-  createSelectOption("branch", "Brach");
-  createSelectOption("domicile", "Domicile");
+  for (let i = tableColumnOrder.length - 1; i >= 0; i--) {
+    const tableColumn = tableColumnOrder[i];
+    if (tableColumn.createFilter) {
+      filterForm.prepend(
+        createSelectOption(tableColumn.property, tableColumn.displayName)
+      );
+    }
+  }
 }
 
 // apply filters

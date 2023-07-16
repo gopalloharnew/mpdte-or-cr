@@ -1,6 +1,6 @@
 .form {
   margin: 1rem auto;
-  width: min(50rem, calc(100% - 2rem));
+  width: min(70rem, calc(100% - 2rem));
   border: var(--border-primary);
   border-radius: 0.25rem;
 }
@@ -51,7 +51,8 @@
   border-radius: 0.25rem;
   font: inherit;
   outline: transparent;
-  max-width: 100%;
+  width: 100%;
+  flex-shrink: 1;
 }
 
 .filter-select:focus-visible {
@@ -59,7 +60,12 @@
 }
 
 .filter-select-wrapper {
-  display: flex;
-  align-items: center;
   gap: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .filter-select-wrapper {
+    display: grid;
+    grid-template-columns: 10ch auto;
+  }
 }
