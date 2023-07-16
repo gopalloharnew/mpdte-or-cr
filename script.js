@@ -29,7 +29,7 @@ function sortColleges(colleges) {
 
 // create filters
 function generateFilterOptions(property) {
-  const options = [];
+  let options = [];
   data.forEach((college) => {
     let isThere = options.some((option) => {
       return option === college[property];
@@ -39,6 +39,7 @@ function generateFilterOptions(property) {
       options.push(college[property]);
     }
   });
+  options = options.sort();
   return options;
 }
 
