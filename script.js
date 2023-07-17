@@ -151,7 +151,7 @@ function createTableRow(college) {
   const tr = document.createElement("tr");
   tableColumnOrder.forEach((column) => {
     const td = document.createElement("td");
-    td.textContent = college[column.property];
+    td.textContent = college[column.property].toLocaleString("HI");
     tr.append(td);
   });
   return tr;
