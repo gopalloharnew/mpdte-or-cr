@@ -8,44 +8,61 @@ const filterForm = document.querySelector("[data-filter-form]");
 const closingRankFromInput = document.querySelector("#closing-rank-from");
 const closingRankToInput = document.querySelector("#closing-rank-to");
 
-const tableColumnOrder = [
+const properties = [
   {
     property: "instituteName",
     displayName: "Institute Name",
     createFilter: true,
+    showInTable: true,
   },
   {
     property: "instituteType",
     displayName: "Institute Type",
     createFilter: true,
+    showInTable: true,
   },
-  { property: "fw", displayName: "FW", createFilter: true },
-  { property: "branchFullForm", displayName: "Branch", createFilter: true },
+  { property: "fw", displayName: "FW", createFilter: true, showInTable: true },
+  {
+    property: "branchFullForm",
+    displayName: "Branch",
+    createFilter: true,
+    showInTable: true,
+  },
   {
     property: "jeeOpeningRank",
     displayName: "JEE Opening Rank",
     createFilter: false,
+    showInTable: true,
   },
   {
     property: "jeeClosingRank",
     displayName: "JEE Closing Rank",
     createFilter: false,
+    showInTable: true,
   },
   {
     property: "allottedCategory",
     displayName: "Category",
     createFilter: true,
+    showInTable: true,
   },
-  { property: "domicile", displayName: "Domicile", createFilter: true },
+  {
+    property: "domicile",
+    displayName: "Domicile",
+    createFilter: true,
+    showInTable: true,
+  },
   {
     property: "totalAllotted",
     displayName: "Total Alloted",
     createFilter: false,
+    showInTable: true,
   },
   {
     property: "nationalPlayer",
     displayName: "National Player",
     createFilter: true,
+    showInTable: true,
   },
 ];
 
@@ -106,8 +123,8 @@ function createSelectOption(property, title) {
 }
 
 function createFilters() {
-  for (let i = tableColumnOrder.length - 1; i >= 0; i--) {
-    const tableColumn = tableColumnOrder[i];
+  for (let i = properties.length - 1; i >= 0; i--) {
+    const tableColumn = properties[i];
     if (tableColumn.createFilter) {
       filterForm.prepend(
         createSelectOption(tableColumn.property, tableColumn.displayName)
@@ -149,20 +166,24 @@ function fitForFilters(college) {
 // html
 function createTableRow(college) {
   const tr = document.createElement("tr");
-  tableColumnOrder.forEach((column) => {
-    const td = document.createElement("td");
-    td.textContent = college[column.property].toLocaleString("HI");
-    tr.append(td);
+  properties.forEach((property) => {
+    if (property.showInTable) {
+      const td = document.createElement("td");
+      td.textContent = college[property.property].toLocaleString("HI");
+      tr.append(td);
+    }
   });
   return tr;
 }
 
 function createTableHeadRow() {
   const tr = document.createElement("tr");
-  tableColumnOrder.forEach((column) => {
-    const th = document.createElement("th");
-    th.textContent = column.displayName;
-    tr.append(th);
+  properties.forEach((property) => {
+    if (property.showInTable) {
+      const th = document.createElement("th");
+      th.textContent = property.displayName;
+      tr.append(th);
+    }
   });
   return tr;
 }

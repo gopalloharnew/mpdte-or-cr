@@ -25,7 +25,9 @@ rows.forEach((row) => {
       console.error("x != SrNo");
     } else {
       collegeInfo.instituteName = purgeString(row.children[1].innerText);
-      collegeInfo.instituteType = purgeString(row.children[2].innerText);
+      collegeInfo.instituteType = purgeString(
+        row.children[2].innerText
+      ).toUpperCase();
       collegeInfo.fw = purgeString(row.children[3].innerText);
       collegeInfo.branch = purgeString(row.children[4].innerText);
       collegeInfo.nationalPlayer = purgeString(row.children[5].innerText);
